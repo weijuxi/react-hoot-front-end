@@ -40,7 +40,7 @@ const App = () => {
             <>
             <Route path="/" element={<Dashboard user={user} />} />
             <Route path="/hoots" element={<HootList hoots={hoots}/>} />
-            <Route path="/hoots/:id" element={<HootDetails />} />
+            <Route path="/hoots/:id" element={<HootDetails  />} />
             </>
           ) : (
             <Route path="/" element={<Landing />} />

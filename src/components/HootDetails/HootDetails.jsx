@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import * as hootService from '../../services/hootService';
 
-export default function HootDetails(props) {
+export default function HootDetails() {
     const [hoot, setHoot] = useState(null);
     const { id } = useParams();
     useEffect(() => {
