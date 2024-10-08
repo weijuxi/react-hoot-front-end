@@ -1,12 +1,14 @@
 import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
+import { AuthedUserContext } from '../../App';
 import * as hootService from '../../services/hootService';
 import styles from './HootDetails.module.css';
 import CommentForm from '../CommentForm/CommentForm';
 
-export default function HootDetails(){
+export default function HootDetails(props){
     const [hoot, setHoot] = useState(null);
     const { id } = useParams();
+    const user = useContext(AuthedUserContext);
     useEffect(() => {
         const getHoot = async () => {
             const hootData = await hootService.show(id);
@@ -27,11 +29,17 @@ export default function HootDetails(){
     if (!hoot) return <main>Loading...</main>;
 
     return (
-        <main className={styles.container}>
+        <main>
         <header>
             <p>{hoot.category.toUpperCase()}</p>
             <h1>{hoot.title}</h1>
             <p>{hoot.author.username}</p>
+
+            {hoot.author._id === user._id ? 
+                <button onClick={() => props.handleDeleteHoot(id)}>
+                    Delete
+                </button> : ''
+            }
         </header>
         <p>{hoot.text}</p>
         <section>

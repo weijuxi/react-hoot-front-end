@@ -58,5 +58,18 @@
       console.log(error, '<--------------------error in create comment services');
     }
   }
+
+  const deleteHoot = async (id) => {
+    try {
+      const res = await fetch(`${BASE_URL}/${id}`, {
+        method: 'DELETE',
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+      });
+      const data = await res.json();
+      return data;
+    } catch (error) {
+      console.log(error, '<--------------------error in delete hoot services');
+    }
+  }
   
-  export { index, show , create, createComment };
+  export { index, show , create, createComment, deleteHoot };
