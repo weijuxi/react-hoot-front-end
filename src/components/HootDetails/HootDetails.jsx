@@ -1,13 +1,15 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import * as hootService from '../../services/hootService';
+import styles from './HootDetails.module.css';
 
-export default function HootDetails() {
+export default function HootDetails(){
     const [hoot, setHoot] = useState(null);
     const { id } = useParams();
     useEffect(() => {
         const getHoot = async () => {
             const hootData = await hootService.show(id);
+            console.log(hootData, '<-------------------hootData in HootDetails');
             setHoot(hootData);
         };
         getHoot();

@@ -3,13 +3,15 @@ import { AuthedUserContext } from '../../App';
 import { useContext } from 'react';
 
 import styles from './NavBar.module.css';
+import Logo from '../../assets/images/logo.svg';
 
 const NavBar = ({ handleSignout }) => {
   const user = useContext(AuthedUserContext);
   return (
     <>
       {user ? (
-        <nav>
+        <nav className={styles.container}>
+          <Link to='/'><img src={Logo} alt="A cute owl" /></Link>
           <ul>
             <li>Welcome, {user.username}</li>
             <li>
@@ -26,7 +28,8 @@ const NavBar = ({ handleSignout }) => {
           </ul>
         </nav>
       ) : (
-        <nav>
+        <nav className={styles.container}>
+          <Link to='/'><img src={Logo} alt="A cute owl" /></Link>
           <ul>
             <li>
               <Link to="/signin">Sign In</Link>
