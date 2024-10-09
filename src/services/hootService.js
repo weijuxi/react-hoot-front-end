@@ -71,5 +71,22 @@
       console.log(error, '<--------------------error in delete hoot services');
     }
   }
+
+  const update = async (id, formData) => {
+    try {
+        const res = await fetch(`${BASE_URL}/${id}`, {
+          method: 'PUT',
+          headers: {
+              Authorization: `Bearer ${localStorage.getItem('token')}`,
+              'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData),
+        });
+        const data = await res.json();
+        return data;
+    } catch (error) {
+        console.log(error, '<--------------------error in Update hoot services');
+    }
+  }
   
-  export { index, show , create, createComment, deleteHoot };
+  export { index, show , create, createComment, deleteHoot, update };
