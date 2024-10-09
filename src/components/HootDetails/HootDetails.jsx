@@ -40,12 +40,13 @@ export default function HootDetails(props){
                     Delete
                 </button> : ''
             }
+            {hoot.author._id === user._id ? <Link to={`/hoots/${id}/edit`}>Edit</Link> : ''}
         </header>
         <p>{hoot.text}</p>
         <section>
             <h2>Comments</h2>
             <CommentForm handleAddComment={handleAddComment}/>
-            {!hoot.comments.length && <p>There are no comments </p>}
+            {!hoot.comments.length && <p>There are no comments</p>}
             {hoot.comments.map((comment) => (
                     <article key={comment._id}>
                         <header>
